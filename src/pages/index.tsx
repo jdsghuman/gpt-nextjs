@@ -37,7 +37,7 @@ export default function Home() {
   };
 
   return (
-    <div className="container">
+    <>
       <Head>
         <title>OpenAI</title>
         <meta name="description" content="OpenAI" />
@@ -45,19 +45,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {!isLoading && (
-        <div>
+        <>
           <Heading title="What is your question?" />
           <Form
             prompt={prompt}
             handleSubmit={handleSubmit}
             setPrompt={setPrompt}
           />
-        </div>
+        </>
       )}
       {isLoading && <Spinner />}
       {!isLoading && answer !== "" && (
         <AiResponse isError={isError} answer={answer} />
       )}
-    </div>
+    </>
   );
 }

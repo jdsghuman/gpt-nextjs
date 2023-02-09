@@ -1,10 +1,7 @@
 import { useState, ReactNode } from "react";
 import Nav from "@components/Nav";
-// import Footer from "../Footer";
-// import Backdrop from "../Backdrop";
-// import SideDrawer from "../SideDrawer/SideDrawer";
-// import { MetaTags } from "../PropTypes/Tags";
-// import Meta from "../Meta";
+
+import styles from "./Layout.module.scss";
 
 interface Props {
   // metaTags: MetaTags;
@@ -16,7 +13,7 @@ const Layout = ({ children }: Props) => {
     <>
       {/* <Meta tags={metaTags} /> */}
       <Nav />
-      {children}
+      <div className={styles.container}>{children}</div>
     </>
   );
 };

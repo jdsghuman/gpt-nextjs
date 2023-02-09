@@ -34,7 +34,7 @@ const Art = () => {
   };
 
   return (
-    <div className="container">
+    <>
       <Head>
         <title>OpenAI</title>
         <meta name="description" content="OpenAI" />
@@ -42,14 +42,14 @@ const Art = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {!isLoading && (
-        <div>
+        <>
           <Heading title="What kind of painting would you like?" />
           <Form
             prompt={prompt}
             setPrompt={setPrompt}
             handleSubmit={handleSubmit}
           />
-        </div>
+        </>
       )}
       {isLoading && <Spinner />}
       {!isLoading && answer === "Please enter valid text" && (
@@ -58,7 +58,7 @@ const Art = () => {
       {!isLoading && answer !== "" && answer !== "Please enter valid text" && (
         <AiResponse isImage answer={answer} />
       )}
-    </div>
+    </>
   );
 };
 
