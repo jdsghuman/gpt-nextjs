@@ -5,9 +5,10 @@ import styles from "./Form.module.scss";
 interface Props {
   handleSubmit: any;
   setPrompt: React.Dispatch<SetStateAction<string>>;
+  prompt: string;
 }
 
-const Form = ({ handleSubmit, setPrompt }: Props) => {
+const Form = ({ handleSubmit, setPrompt, prompt }: Props) => {
   const inputTxt = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +29,7 @@ const Form = ({ handleSubmit, setPrompt }: Props) => {
         type="text"
         onChange={handleChange}
         placeholder={"Enter text here"}
+        value={prompt}
       />
       <div>
         <Button onClick={handleSubmit} className={styles.button}>

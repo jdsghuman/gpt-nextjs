@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "@components/Form";
 import Heading from "@components/Heading";
 import Head from "next/head";
@@ -9,6 +9,7 @@ const Art = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [answer, setAnswer] = useState<string>("");
   const [prompt, setPrompt] = useState<string>("");
+  const [isError, setIsError] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,6 +26,11 @@ const Art = () => {
     const data = await response.json();
     setAnswer(data.text);
     setIsLoading(false);
+    if (data.text === "Please enter valid text") {
+      setIsError(true);
+    } else {
+      setIsError(false);
+    }
   };
 
   return (
@@ -38,11 +44,20 @@ const Art = () => {
       {!isLoading && (
         <div>
           <Heading title="What kind of painting would you like?" />
-          <Form setPrompt={setPrompt} handleSubmit={handleSubmit} />
+          <Form
+            prompt={prompt}
+            setPrompt={setPrompt}
+            handleSubmit={handleSubmit}
+          />
         </div>
       )}
       {isLoading && <Spinner />}
-      {!isLoading && answer !== "" && <AiResponse isImage answer={answer} />}
+      {!isLoading && answer === "Please enter valid text" && (
+        <AiResponse isError={isError} answer={answer} />
+      )}
+      {!isLoading && answer !== "" && answer !== "Please enter valid text" && (
+        <AiResponse isImage answer={answer} />
+      )}
     </div>
   );
 };

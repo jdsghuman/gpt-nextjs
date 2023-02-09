@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import Heading from "@components/Heading";
@@ -12,6 +12,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [answer, setAnswer] = useState<string>("");
   const [prompt, setPrompt] = useState<string>("");
+  const [isError, setIsError] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +29,11 @@ export default function Home() {
     const data = await response.json();
     setAnswer(data.text.trim());
     setIsLoading(false);
+    if (data.text.trim() === "Please enter valid text") {
+      setIsError(true);
+    } else {
+      setIsError(false);
+    }
   };
 
   return (
@@ -41,11 +47,17 @@ export default function Home() {
       {!isLoading && (
         <div>
           <Heading title="What is your question?" />
-          <Form handleSubmit={handleSubmit} setPrompt={setPrompt} />
+          <Form
+            prompt={prompt}
+            handleSubmit={handleSubmit}
+            setPrompt={setPrompt}
+          />
         </div>
       )}
       {isLoading && <Spinner />}
-      {!isLoading && answer !== "" && <AiResponse answer={answer} />}
+      {!isLoading && answer !== "" && (
+        <AiResponse isError={isError} answer={answer} />
+      )}
     </div>
   );
 }

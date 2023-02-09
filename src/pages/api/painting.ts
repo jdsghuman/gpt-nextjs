@@ -12,6 +12,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (req.body.prompt === "") {
+    res.status(200).json({ text: "Please enter valid text" });
+  }
   if (typeof req.body.prompt === "string") {
     const response = await openai.createImage({
       prompt: `A wet on wet oil painting of ${req.body.prompt}.`,
