@@ -1,0 +1,14 @@
+.container {
+  padding: 5px;
+  border: 1px solid #fff;
+  max-width: 95%;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .image {
+    max-width: 90%;
+  }
+}

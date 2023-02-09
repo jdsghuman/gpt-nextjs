@@ -1,0 +1,24 @@
+@import "@styles/color-palette";
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto;
+  &__text {
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    &::after {
+      display: block;
+      margin: 0 auto;
+      margin-top: 10px;
+      content: "";
+      height: 2px;
+      background: $secondary;
+      border-radius: 6px;
+      max-width: 200px;
+      transition: max-width 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+  }
+}
