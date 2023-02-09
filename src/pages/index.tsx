@@ -39,7 +39,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Heading title="What can I do for you?" />
+        <Heading title="What is your question?" />
         <Form handleSubmit={handleSubmit} setPrompt={setPrompt} />
       </div>
       {isLoading && <Spinner />}
