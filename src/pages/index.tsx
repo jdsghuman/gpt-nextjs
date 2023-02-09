@@ -38,10 +38,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <Heading title="What is your question?" />
-        <Form handleSubmit={handleSubmit} setPrompt={setPrompt} />
-      </div>
+      {!isLoading && (
+        <div>
+          <Heading title="What is your question?" />
+          <Form handleSubmit={handleSubmit} setPrompt={setPrompt} />
+        </div>
+      )}
       {isLoading && <Spinner />}
       {!isLoading && answer !== "" && <AiResponse answer={answer} />}
     </div>

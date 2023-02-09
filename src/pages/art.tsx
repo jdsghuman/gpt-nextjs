@@ -35,11 +35,12 @@ const Art = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <Heading title="What kind of painting would you like?" />
-        <Form setPrompt={setPrompt} handleSubmit={handleSubmit} />
-      </div>
-      {/* {isLoading === false && answer !== "" && <img src={answer} />} */}
+      {!isLoading && (
+        <div>
+          <Heading title="What kind of painting would you like?" />
+          <Form setPrompt={setPrompt} handleSubmit={handleSubmit} />
+        </div>
+      )}
       {isLoading && <Spinner />}
       {!isLoading && answer !== "" && <AiResponse isImage answer={answer} />}
     </div>
